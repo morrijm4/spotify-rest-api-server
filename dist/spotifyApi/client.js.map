@@ -1,0 +1,1 @@
+{"version":3,"file":"client.js","sourceRoot":"","sources":["../../src/spotifyApi/client.ts"],"names":[],"mappings":";;;;;AAAA,gFAA8C;AAC9C,4CAAoC;AAEpC,MAAM,UAAU,GAAG,IAAI,8BAAU,CAAC;IAChC,WAAW,EAAE,oBAAoB,gBAAI,WAAW;IAChD,QAAQ,EAAE,kCAAkC;IAC5C,YAAY,EAAE,kCAAkC;CACjD,CAAC,CAAC;AAEH,kBAAe,UAAU,CAAC"}
