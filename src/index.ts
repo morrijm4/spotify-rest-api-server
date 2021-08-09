@@ -1,12 +1,22 @@
 import 'reflect-metadata';
-import Express from 'express';
+import express from 'express';
 import { getPlaylistTracks } from './spotifyApi/getPlaylist';
 import cors from 'cors';
 import spotifyApi from './spotifyApi/client';
+import https from 'https';
+import fs from 'fs';
 
 const main = async () => {
-  const app = Express();
+  const app = express();
   const port = 4000;
+  
+  const privateKey = fs.readFileSync('../sslcert/key.pem', 'utf8')
+  const certificate = fs.readFileSync('../sslcert/cert.pem', 'utf8')
+ 
+  const options = {
+    key: privateKey,
+    cert: certificate
+  };
 
   app.use(
     cors({
@@ -41,7 +51,9 @@ const main = async () => {
     res.send(responce);
   });
 
-  app.listen(port, () => {
+  const server - https.createServer(options, app);
+
+  server.listen(port, () => {
     console.log('Started server on localhost:', port);
   });
 };
