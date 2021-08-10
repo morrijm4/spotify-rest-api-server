@@ -51,7 +51,7 @@ const main = async () => {
     res.send(responce);
   });
 
-  const server - https.createServer(options, app);
+  const server = https.createServer(options, app);
 
   server.listen(port, () => {
     console.log('Started server on localhost:', port);

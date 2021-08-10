@@ -7,9 +7,17 @@ require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const getPlaylist_1 = require("./spotifyApi/getPlaylist");
 const cors_1 = __importDefault(require("cors"));
+const https_1 = __importDefault(require("https"));
+const fs_1 = __importDefault(require("fs"));
 const main = async () => {
     const app = express_1.default();
     const port = 4000;
+    const privateKey = fs_1.default.readFileSync('../sslcert/key.pem', 'utf8');
+    const certificate = fs_1.default.readFileSync('../sslcert/cert.pem', 'utf8');
+    const options = {
+        key: privateKey,
+        cert: certificate
+    };
     app.use(cors_1.default({
         origin: '*',
         // credentials: true,
@@ -30,7 +38,8 @@ const main = async () => {
         console.log('fetched playlist', req.params.playlistId);
         res.send(responce);
     });
-    app.listen(port, () => {
+    const server = https_1.default.createServer(options, app);
+    server.listen(port, () => {
         console.log('Started server on localhost:', port);
     });
 };
